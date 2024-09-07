@@ -1,5 +1,5 @@
 [package]
-name = "report-szu"
+name = "casual-szu-report"
 version = "0.1.0"
 entrypoint = "lib.typ"
 authors = ["Keaton Jiang <jiang131072@gmail.com>"]

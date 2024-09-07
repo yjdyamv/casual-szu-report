@@ -1,4 +1,5 @@
-#import "../lib.typ": template
+// #import "../lib.typ": template
+#import "@preview/casual-szu-report": template
 
 #show: template.with(
   course-title: [养鸡学习],

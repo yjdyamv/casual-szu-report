@@ -4,8 +4,6 @@ A Typst template for SZU course reports.
 
 ## Usage
 
-The template is not yet be published to Typst Universe (Maybe never, but the layout is ready). So you have to download the lib.typ to use.
-
 Example is at `template/main.typ`. TLDR:
 
 ```typst
@@ -38,6 +36,8 @@ Features:
 
 ## Method
 
-The template will traverse body content, and split it into groups acoording to Heading-1 layout. Each group content will be wrapped with `table.cell`.
+The template will traverse body content, and split it into groups acoording to Heading-1 layout. Each group content will be wrapped with `table.cell`. So all content will be wrapped in container, you can't use `pagebreak()` in your body content.
 
-So all content will be wrapped in container, you can't use `pagebreak()` in your body content.
+## Warning
+
+This is not a serious work and may have some rough edges. And reports from different faculties isn't entirely uniform. Be careful when using it.
