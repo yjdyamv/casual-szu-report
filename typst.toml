@@ -7,7 +7,7 @@ license = "MIT"
 description = "A template for SZU course reports."
 
 homepage = "https://typst.app/universe/package/report-szu"
-repository = "https://codeberg.org/jiang131072/report-szu"
+repository = "https://github.com/jiang131072/report-szu-typst"
 keywords = ["SZU", "Shenzhen University", "report"]
 categories = ["report"]
 disciplines = []

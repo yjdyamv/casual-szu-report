@@ -25,6 +25,7 @@
       citation-style = value
     } else if key == "CourseID" {
       // TODO Course ID box on first page
+      assert(false, "Not yet implemented")
     } else {
       assert(false, "Unknown Feature")
     }
