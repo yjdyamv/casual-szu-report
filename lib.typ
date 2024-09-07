@@ -5,7 +5,7 @@
   faculty: auto,
   major: auto,
   instructor: auto,
-  repoter: auto,
+  reporter: auto,
   student-id: auto,
   class: auto,
   experiment-date: auto,
@@ -33,7 +33,7 @@
 
   set document(
     title: experiment-title,
-    author: repoter.text,
+    author: reporter.text,
   )
 
   set page(footer: context {
@@ -121,7 +121,7 @@
       grid(
         columns: (3em, 1em, 4.5em, 2em, 1em, 7em, 2em, 1em, 5.5em),
         row-gutter: 3.5em,
-        "报告人", "：", u(repoter), "学号", "：", u(student-id), "班级", "：", u(class),
+        "报告人", "：", u(reporter), "学号", "：", u(student-id), "班级", "：", u(class),
       ),
       y: 2em,
     ) // TODO use mearure to get precise value

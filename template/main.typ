@@ -7,7 +7,7 @@
   faculty: [养鸡学院],
   major: [智能养鸡],
   instructor: [鸡老师],
-  repoter: [鸡],
+  reporter: [鸡],
   student-id: [4144010590],
   class: [养鸡99班],
   experiment-date: datetime(year: 1983, month: 9, day: 27),

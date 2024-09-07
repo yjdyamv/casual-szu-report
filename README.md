@@ -15,7 +15,7 @@ Example is at `template/main.typ`. TLDR:
   faculty: [养鸡学院],
   major: [智能养鸡],
   instructor: [鸡老师],
-  repoter: [鸡],
+  reporter: [鸡],
   student-id: [4144010590],
   class: [养鸡99班],
   experiment-date: datetime(year: 1983, month: 9, day: 27),
@@ -36,7 +36,7 @@ Features:
 
 ## Method
 
-The template will traverse body content, and split it into groups acoording to Heading-1 layout. Each group content will be wrapped with `table.cell`. So all content will be wrapped in container, you can't use `pagebreak()` in your body content.
+The template will traverse body content, and split it into groups according to Heading-1 layout. Each group content will be wrapped with `table.cell`. So all content will be wrapped in container, you can't use `pagebreak()` in your body content.
 
 ## Warning
 
