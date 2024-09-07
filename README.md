@@ -1,4 +1,4 @@
-# report-szu
+# casual-szu-report
 
 A Typst template for SZU course reports.
 
