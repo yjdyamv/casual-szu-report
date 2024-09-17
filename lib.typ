@@ -10,9 +10,21 @@
   class: auto,
   experiment-date: auto,
   submission-date: datetime.today(),
-  features: (), // TODO features: "CourseID"
+  features: (),
 ) = {
-  let font-family = ("Noto Serif", "Noto Serif CJK SC")
+
+  // let font-family = ("Noto Serif", "Noto Serif CJK SC")
+  let font-family = ("New Computer Modern", "Noto Serif CJK SC")
+
+  // BUG biblioraphy file can only used relative path to
+  // lib.typ if declared in lib.typ. While Typst do not
+  // support absolute path. No good idea. If you manually
+  // add biblioraphy in template file, it will be wrapped
+  // in table.cell (unless we add an extra test for
+  // biblioraphy func, but that is really ugly, and will
+  // birng many uncertaities). No good idea.
+  // Workaround: copy lib.typ to workdir.
+
   let bibliography-file = none
   let citation-style = "gb-7714-2015-numeric"
 
@@ -30,6 +42,29 @@
       assert(false, "Unknown Feature")
     }
   }
+
+  // Raw Theme
+  // import "@preview/codly:1.0.0": *
+  // show: codly-init.with()
+
+  // BUG Legacy Microsoft font for Simplified Chinese (as
+  // list below) are lack of bold weitht (bold and font
+  // weight do not work), so we can use @preview/cuti to
+  // fake bold. But cuti's support is very simple,
+  // properties like tracking do not work, and it doesn't
+  // recogenize `semibold`. So we can't use it. No good
+  // idea.
+  // Workaround: use Noto Serif CJK SC.
+  // let version-cuti = "0.2.1"
+  // let font-family = ("Times New Roman", "SimSun")
+  // for font in font-family {
+  //   if font in ("KaiTi", "SimHei", "SimSun") {
+  //     // Legacy Microsoft font for Simplified Chinese
+  //     // are lack of bold weight, so we use fake bold
+  //     import "@preview/cuti:" + version-cuti: show-cn-fakebold
+  //     show: show-cn-fakebold
+  //   }
+  // }
 
   set document(
     title: experiment-title,
@@ -56,8 +91,8 @@
   // By https://github.com/Myriad-Dreamin
   set par(justify: true, first-line-indent: 2em)
 
-  let ss = selector(heading).or(enum).or(figure)
-  show ss: it => {
+  let st-fake = selector(heading).or(pad).or(figure)
+  show st-fake: it => {
     it
     let b = par[#box()]
     let t = measure(b * 2)
@@ -65,15 +100,18 @@
     v(-t.height)
   }
 
+  let st-indent = selector(enum).or(list).or(raw.where(block: true))
+  show st-indent: it => {
+    pad(it, left: 2em)
+  }
+
   // Heading
   show heading.where(depth: 1): set text(size: 12pt)
   show heading.where(depth: 2): set text(size: 11.5pt)
   show heading.where(depth: 3): set text(size: 11pt)
 
-
-  set enum(numbering: "1)a)i)") // TODO taken from ieee, may need further customization
-
-  // TODO figure setup
+  // Enum
+  set enum(numbering: "1)a)i)")
 
   /* Header Line */
   line(length: 100%)
@@ -186,7 +224,6 @@
         成绩评定：
         #v(5em)
         #h(24em) 指导教师签字：
-
         #h(24em) #h(4em)年#h(2em)月#h(2em)日
       ], [
         备注：
@@ -195,10 +232,8 @@
     )
     [
       注：
-      #pad(left: 2em)[
-        + 报告内的项目或内容设置，可根据实际情况加以调整和补充。
-        + 教师批改学生实验报告时间应在学生提交实验报告时间后10日内。
-      ]
+      + 报告内的项目或内容设置，可根据实际情况加以调整和补充。
+      + 教师批改学生实验报告时间应在学生提交实验报告时间后10日内。
     ]
   }
 
