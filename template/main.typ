@@ -1,5 +1,4 @@
-// #import "../lib.typ": template
-#import "@preview/casual-szu-report": template
+#import "@preview/casual-szu-report:0.1.0": template
 
 #show: template.with(
   course-title: [养鸡学习],
@@ -45,7 +44,7 @@ Transformer is all you need. @vaswani2023attentionneed
 = 实验原理
 
 #figure(
-  image("img/AnimalWell.png", width: 60%),
+  image("img/image1.png", width: 60%),
   caption: [2 Rabbits],
 ) <AnimalWell>
 
