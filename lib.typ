@@ -12,17 +12,17 @@
   submission-date: datetime.today(),
   features: (),
 ) = {
-
   // let font-family = ("Noto Serif", "Noto Serif CJK SC")
   let font-family = ("New Computer Modern", "Noto Serif CJK SC")
 
   // BUG biblioraphy file can only used relative path to
   // lib.typ if declared in lib.typ. While Typst do not
-  // support absolute path. No good idea. If you manually
-  // add biblioraphy in template file, it will be wrapped
-  // in table.cell (unless we add an extra test for
-  // biblioraphy func, but that is really ugly, and will
-  // birng many uncertaities). No good idea.
+  // support absolute path. If you manually add
+  // biblioraphy in template file, it will be wrapped in
+  // table.cell (unless we add an extra test for
+  // biblioraphy func, but that is very hacky, and will
+  // birng many uncertaities, ex. biblioraphy not in the
+  // end). No good idea.
   // Workaround: copy lib.typ to workdir.
 
   let bibliography-file = none
@@ -43,17 +43,13 @@
     }
   }
 
-  // Raw Theme
-  // import "@preview/codly:1.0.0": *
-  // show: codly-init.with()
-
   // BUG Legacy Microsoft font for Simplified Chinese (as
   // list below) are lack of bold weitht (bold and font
-  // weight do not work), so we can use @preview/cuti to
-  // fake bold. But cuti's support is very simple,
+  // weight do not work), so we try to use @preview/cuti
+  // to fake bold. But cuti's support is very simple,
   // properties like tracking do not work, and it doesn't
-  // recogenize `semibold`. So we can't use it. No good
-  // idea.
+  // recogenize `semibold` or specified weight. So we
+  // can't use it. No good idea.
   // Workaround: use Noto Serif CJK SC.
   // let version-cuti = "0.2.1"
   // let font-family = ("Times New Roman", "SimSun")
@@ -91,19 +87,22 @@
   // By https://github.com/Myriad-Dreamin
   set par(justify: true, first-line-indent: 2em)
 
-  let st-fake = selector(heading).or(pad).or(figure)
-  show st-fake: it => {
+  let sel-fake = selector(heading).or(figure).or(math.equation.where(block: true)).or(pad).or(list).or(enum)
+  show sel-fake: it => {
     it
-    let b = par[#box()]
-    let t = measure(b * 2)
+    let b = par(box())
     b
+    let t = measure(b * 2)
     v(-t.height)
   }
 
-  let st-indent = selector(enum).or(list).or(raw.where(block: true))
+  let st-indent = selector(raw.where(block: true))
   show st-indent: it => {
     pad(it, left: 2em)
   }
+
+  show enum: set enum(indent: 1em)
+  show list: set list(indent: 1em)
 
   // Heading
   show heading.where(depth: 1): set text(size: 12pt)
@@ -111,7 +110,7 @@
   show heading.where(depth: 3): set text(size: 11pt)
 
   // Enum
-  set enum(numbering: "1)a)i)")
+  show enum: set enum(numbering: "1)a)i)")
 
   /* Header Line */
   line(length: 100%)
@@ -224,6 +223,7 @@
         成绩评定：
         #v(5em)
         #h(24em) 指导教师签字：
+
         #h(24em) #h(4em)年#h(2em)月#h(2em)日
       ], [
         备注：
