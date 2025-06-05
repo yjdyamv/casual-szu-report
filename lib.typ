@@ -85,10 +85,10 @@
 
   // Workaround for https://github.com/typst/typst/issues/311
   // By https://github.com/Myriad-Dreamin
-  set par(justify: true, first-line-indent: 2em)
+  set par(justify: true, first-line-indent: (amount: 2em, all: true))
 
   let sel-fake = selector(heading).or(figure).or(math.equation.where(block: true)).or(pad).or(list).or(enum)
-  show sel-fake: it => {
+  show sel-fake: it => context{
     it
     let b = par(box())
     b
@@ -179,7 +179,7 @@
   {
     set align(center)
     set text(weight: "semibold", size: 12pt)
-    [教育部制]
+    [教务部制]
   }
 
   pagebreak(weak: true)
@@ -214,7 +214,7 @@
   pagebreak(weak: true)
 
   {
-    set par(first-line-indent: 0em)
+    set par(first-line-indent: (amount: 0em, all: true))
     table(
       columns: (100%),
       [
